@@ -82,8 +82,11 @@ class Calculator {
     }
     
     func multiply(_ args: [Int]) -> Int {
-        var ret = 1;
+        if args.count == 0 {
+            return 0
+        }
         
+        var ret = 1;
         for i in args {
             ret *= i
         }
@@ -104,8 +107,11 @@ class Calculator {
     }
     
     func avg(_ args: [Int]) -> Int {
-        var ret = 0;
+        if(args.count == 0) {
+            return 0
+        }
         
+        var ret = 0;
         for i in args {
             ret += i
         }
@@ -145,6 +151,13 @@ let calc = Calculator()
 //: Keep in mind that writing new tests may reveal ambiguity in the specification above--if that's the case, document the ambiguity, declare what you think *should* happen, and write the test to test for it.
 
 // ===== Your tests go here
+calc.add([]) == 0
+
+calc.multiply([]) == 0 //ambiguity: what should the total multiplication of an empty array be. I think it should be zero because there is nothing in the array, however multiplying by something with no value should maintain the value of what it is being multiplied with so you could argue it should be one as well.
+
+calc.avg([]) == 0 //ambiguity: what should avg of an empty array be. I think the best thing to do is to set a precondition for the method avg requiring the argument to be a valid non-empty array
+
+
 
 //: ---
 //: ## Test code block
